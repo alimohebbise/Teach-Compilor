@@ -17,6 +17,7 @@ type
     BtnRun: TButton;
     ComboInp: TComboBox;
     BtnCode: TButton;
+    BtnDate: TButton;
     BtnTranslator: TButton;
     BtnParser: TButton;
     BtnDecision: TButton;
@@ -39,6 +40,7 @@ type
     procedure BtnDecisionClick(Sender: TObject);
     procedure BtnParserClick(Sender: TObject);
     procedure BtnTranslatorClick(Sender: TObject);
+    procedure BtnDateClick(Sender: TObject);
     procedure BtnCodeClick(Sender: TObject);
   private
     { Private declarations }
@@ -64,6 +66,11 @@ begin
   MemoOut.Lines.Clear;
   MemoOut.Lines.Add('Codes =');
   MemoOut.Lines.AddStrings(Inp.SkipCodes.ToLines);
+end;
+
+procedure TFClassic.BtnDateClick(Sender: TObject);
+begin
+  MemoOut.Lines.Text:= Inp.SkipDate;
 end;
 
 procedure TFClassic.BtnDecisionClick(Sender: TObject);         {Ali_Mohebbi}
@@ -171,6 +178,8 @@ begin                                                {Ali_Mohebbi}
     BtnParser.Click
   else if F= 'TRANSLATOR.TXT' then
     BtnTranslator.Click
+  else if F= 'DATE.TXT' then
+    BtnDate.Click
   else if F= 'CODE.TXT' then
     BtnCode.Click;
 end;                                                 {Ali_Mohebbi}

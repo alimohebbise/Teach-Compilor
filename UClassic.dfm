@@ -64,13 +64,23 @@ object FClassic: TFClassic
     ExplicitHeight = 713
     object BtnCode: TButton
       Left = 1
-      Top = 361
+      Top = 401
       Width = 108
       Height = 40
       Align = alTop
       Caption = 'Code'
       TabOrder = 0
       OnClick = BtnCodeClick
+    end
+    object BtnDate: TButton
+      Left = 1
+      Top = 361
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Date'
+      TabOrder = 1
+      OnClick = BtnDateClick
     end
     object BtnTranslator: TButton
       Left = 1

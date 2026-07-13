@@ -48,6 +48,8 @@ type                                              {Ali_Mohebbi}
     function SkipId: string;
     function IsInt: Boolean;
     function SkipInt: Integer;
+    function IsDate: Boolean;
+    function SkipDate: string;
     function IsNum: Boolean;
     function SkipNum: Double;
     function IsStr: Boolean;                      {Ali_Mohebbi}
@@ -269,6 +271,85 @@ begin
   Result:= State in [2];
   if Result then NewPos:= p;
 end;
+
+function TSyntaxLine.IsDate: Boolean;
+var
+  p, State: Integer;
+  Year, Month, Day: Integer;
+begin
+  SkipUnread;
+  State:= 0;
+
+  for p:= Pos to High(Text) do
+    case State of
+      0:
+        if Text[p].IsDigit then
+          State:= 1
+        else
+          Break;
+      1:
+        if Text[p].IsDigit then
+          State:= 2
+        else
+          Break;
+      2:
+        if Text[p].IsDigit then
+          State:= 3
+        else
+          Break;
+      3:
+        if Text[p].IsDigit then
+          State:= 4
+        else
+          Break;
+      4:
+        if Text[p]= '/' then
+          State:= 5
+        else
+          Break;
+      5:
+        if Text[p].IsDigit then
+          State:= 6
+        else
+          Break;
+      6:
+        if Text[p].IsDigit then
+          State:= 7
+        else
+          Break;
+      7:
+        if Text[p]= '/' then
+          State:= 8
+        else
+          Break;
+      8:
+        if Text[p].IsDigit then
+          State:= 9
+        else
+          Break;
+      9:
+        if Text[p].IsDigit then
+          State:= 10
+        else
+          Break;
+      10:
+        Break;
+    end;
+
+  Result:= State= 10;
+  if Result then
+  begin
+    NewPos:= p;
+    Result:= TryStrToInt(Copy(Text, Pos, 4), Year)
+      and TryStrToInt(Copy(Text, Pos+ 5, 2), Month)
+      and TryStrToInt(Copy(Text, Pos+ 8, 2), Day)
+      and (Year in [0..9999])
+      and (Month in [1..12])
+      and (Day>= 1)
+      and (((Month<= 6) and (Day<= 31)) or ((Month> 6) and (Day<= 30)));
+  end;
+end;
+
 function TSyntaxLine.IsKey(Key: string): Boolean;
 begin
   Result:= IsId and (Copy(Text, Pos, NewPos- Pos).ToUpper= Key.ToUpper);
@@ -285,6 +366,8 @@ begin
     Result:= IsId
   else if T= '#INT' then
     Result:= IsInt
+  else if T= '#DATE' then
+    Result:= IsDate
   else if T= '#NUM' then
     Result:= IsNum
   else if T= '#STR' then
@@ -520,6 +603,8 @@ begin
     Result:= SkipId
   else if T= '#INT' then
     Result:= SkipInt.ToString
+  else if T= '#DATE' then
+    Result:= SkipDate
   else if T= '#NUM' then
     Result:= SkipNum.ToString
   else if T= '#STRQUOT' then
@@ -959,6 +1044,14 @@ begin
     Result:= JumpTo(NewPos).ToInteger
   else
     SyntaxError('Invalid integer');
+end;
+
+function TSyntaxLine.SkipDate: string;
+begin
+  if IsDate then
+    Result:= JumpTo(NewPos)
+  else
+    SyntaxError('Invalid date');
 end;
 
 function TSyntaxLine.SkipKey(Key: string): string;       {Ali_Mohebbi}
