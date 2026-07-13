@@ -43,7 +43,7 @@ type
     procedure BtnDateClick(Sender: TObject);
     procedure BtnCodeClick(Sender: TObject);
   private
-    { Private declarations }
+    function ResolveFileName(const FileName: string): string;
   public
     { Public declarations }
   end;
@@ -61,6 +61,26 @@ uses
 var
   Inp: TSyntaxLine;
     {Ali_Mohebbi}
+function TFClassic.ResolveFileName(const FileName: string): string;
+begin
+  if FileName= '' then
+    Exit('');
+
+  if TPath.IsPathRooted(FileName) then
+    Exit(FileName);
+
+  if FileExists(FileName) then
+    Exit(TPath.GetFullPath(FileName));
+
+  if FileExists(TPath.Combine(TDirectory.GetCurrentDirectory, FileName)) then
+    Exit(TPath.Combine(TDirectory.GetCurrentDirectory, FileName));
+
+  if FileExists(TPath.Combine(TDirectory.GetCurrentDirectory, 'Win32', 'Debug', FileName)) then
+    Exit(TPath.Combine(TDirectory.GetCurrentDirectory, 'Win32', 'Debug', FileName));
+
+  Result:= TPath.Combine(TDirectory.GetCurrentDirectory, FileName);
+end;
+
 procedure TFClassic.BtnCodeClick(Sender: TObject);             {Ali_Mohebbi}
 begin
   MemoOut.Lines.Clear;
@@ -185,9 +205,12 @@ begin                                                {Ali_Mohebbi}
 end;                                                 {Ali_Mohebbi}
 
 procedure TFClassic.BtnSaveClick(Sender: TObject);     {Ali_Mohebbi}
+var
+  FileName: string;
 begin
-  MemoInp.Lines.SaveToFile(ComboInp.Text);
-  Inp.LoadFile(ComboInp.Text);
+  FileName:= ResolveFileName(ComboInp.Text);
+  MemoInp.Lines.SaveToFile(FileName);
+  Inp.LoadFile(FileName);
 end;
 
 procedure TFClassic.BtnStrClick(Sender: TObject);                 {Ali_Mohebbi}
@@ -207,15 +230,19 @@ begin
 end;
 
 procedure TFClassic.ComboInpChange(Sender: TObject);              {Ali_Mohebbi}
+var
+  FileName: string;
 begin
-  MemoInp.Lines.LoadFromFile(ComboInp.Text);
-  Inp.LoadFile(ComboInp.Text);
+  FileName:= ResolveFileName(ComboInp.Text);
+  MemoInp.Lines.LoadFromFile(FileName);
+  Inp.LoadFile(FileName);
 end;
 
 procedure TFClassic.FormActivate(Sender: TObject);                {Ali_Mohebbi}
 var
   i: Integer;
   F: TArray<String>;
+  FileName: string;
 begin                                                             {Ali_Mohebbi}
   F:= TDirectory.GetFiles(TDirectory.GetCurrentDirectory, '*.txt');
   F:= F + TDirectory.GetFiles(TDirectory.GetCurrentDirectory + '/Win32/Debug', '*.txt');
@@ -226,8 +253,9 @@ begin                                                             {Ali_Mohebbi}
   ComboInp.Items.AddStrings(F);
   ComboInp.ItemIndex:= 0;
 
-  MemoInp.Lines.LoadFromFile(ComboInp.Text);
-  Inp.LoadFile(ComboInp.Text);
+  FileName:= ResolveFileName(ComboInp.Text);
+  MemoInp.Lines.LoadFromFile(FileName);
+  Inp.LoadFile(FileName);
 end;
         {Ali-Mohebbi}
 end.
