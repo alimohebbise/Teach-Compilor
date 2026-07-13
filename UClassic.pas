@@ -218,6 +218,7 @@ var
   F: TArray<String>;
 begin                                                             {Ali_Mohebbi}
   F:= TDirectory.GetFiles(TDirectory.GetCurrentDirectory, '*.txt');
+  F:= F + TDirectory.GetFiles(TDirectory.GetCurrentDirectory + '/Win32/Debug', '*.txt');
   for i:= 0 to High(F) do
     F[i]:= TPath.GetFileName(F[i]);
            {Ali_Mohebbi}
