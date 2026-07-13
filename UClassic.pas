@@ -17,7 +17,6 @@ type
     BtnRun: TButton;
     ComboInp: TComboBox;
     BtnCode: TButton;
-    BtnDate: TButton;
     BtnTranslator: TButton;
     BtnParser: TButton;
     BtnDecision: TButton;
@@ -40,10 +39,9 @@ type
     procedure BtnDecisionClick(Sender: TObject);
     procedure BtnParserClick(Sender: TObject);
     procedure BtnTranslatorClick(Sender: TObject);
-    procedure BtnDateClick(Sender: TObject);
     procedure BtnCodeClick(Sender: TObject);
   private
-    function ResolveFileName(const FileName: string): string;
+    { Private declarations }
   public
     { Public declarations }
   end;
@@ -61,36 +59,11 @@ uses
 var
   Inp: TSyntaxLine;
     {Ali_Mohebbi}
-function TFClassic.ResolveFileName(const FileName: string): string;
-begin
-  if FileName= '' then
-    Exit('');
-
-  if TPath.IsPathRooted(FileName) then
-    Exit(FileName);
-
-  if FileExists(FileName) then
-    Exit(TPath.GetFullPath(FileName));
-
-  if FileExists(TPath.Combine(TDirectory.GetCurrentDirectory, FileName)) then
-    Exit(TPath.Combine(TDirectory.GetCurrentDirectory, FileName));
-
-  if FileExists(TPath.Combine(TDirectory.GetCurrentDirectory, 'Win32', 'Debug', FileName)) then
-    Exit(TPath.Combine(TDirectory.GetCurrentDirectory, 'Win32', 'Debug', FileName));
-
-  Result:= TPath.Combine(TDirectory.GetCurrentDirectory, FileName);
-end;
-
 procedure TFClassic.BtnCodeClick(Sender: TObject);             {Ali_Mohebbi}
 begin
   MemoOut.Lines.Clear;
   MemoOut.Lines.Add('Codes =');
   MemoOut.Lines.AddStrings(Inp.SkipCodes.ToLines);
-end;
-
-procedure TFClassic.BtnDateClick(Sender: TObject);
-begin
-  MemoOut.Lines.Text:= Inp.SkipDate;
 end;
 
 procedure TFClassic.BtnDecisionClick(Sender: TObject);         {Ali_Mohebbi}
@@ -198,19 +171,14 @@ begin                                                {Ali_Mohebbi}
     BtnParser.Click
   else if F= 'TRANSLATOR.TXT' then
     BtnTranslator.Click
-  else if F= 'DATE.TXT' then
-    BtnDate.Click
   else if F= 'CODE.TXT' then
     BtnCode.Click;
 end;                                                 {Ali_Mohebbi}
 
 procedure TFClassic.BtnSaveClick(Sender: TObject);     {Ali_Mohebbi}
-var
-  FileName: string;
 begin
-  FileName:= ResolveFileName(ComboInp.Text);
-  MemoInp.Lines.SaveToFile(FileName);
-  Inp.LoadFile(FileName);
+  MemoInp.Lines.SaveToFile(ComboInp.Text);
+  Inp.LoadFile(ComboInp.Text);
 end;
 
 procedure TFClassic.BtnStrClick(Sender: TObject);                 {Ali_Mohebbi}
@@ -230,19 +198,15 @@ begin
 end;
 
 procedure TFClassic.ComboInpChange(Sender: TObject);              {Ali_Mohebbi}
-var
-  FileName: string;
 begin
-  FileName:= ResolveFileName(ComboInp.Text);
-  MemoInp.Lines.LoadFromFile(FileName);
-  Inp.LoadFile(FileName);
+  MemoInp.Lines.LoadFromFile(ComboInp.Text);
+  Inp.LoadFile(ComboInp.Text);
 end;
 
 procedure TFClassic.FormActivate(Sender: TObject);                {Ali_Mohebbi}
 var
   i: Integer;
   F: TArray<String>;
-  FileName: string;
 begin                                                             {Ali_Mohebbi}
   F:= TDirectory.GetFiles(TDirectory.GetCurrentDirectory, '*.txt');
   F:= F + TDirectory.GetFiles(TDirectory.GetCurrentDirectory + '/Win32/Debug', '*.txt');
@@ -251,11 +215,13 @@ begin                                                             {Ali_Mohebbi}
            {Ali_Mohebbi}
   ComboInp.Items.Clear;
   ComboInp.Items.AddStrings(F);
-  ComboInp.ItemIndex:= 0;
+  if ComboInp.Items.Count > 0 then
+  begin
+    ComboInp.ItemIndex:= 0;
 
-  FileName:= ResolveFileName(ComboInp.Text);
-  MemoInp.Lines.LoadFromFile(FileName);
-  Inp.LoadFile(FileName);
+    MemoInp.Lines.LoadFromFile(ComboInp.Text);
+    Inp.LoadFile(ComboInp.Text);
+  end;
 end;
         {Ali-Mohebbi}
 end.
