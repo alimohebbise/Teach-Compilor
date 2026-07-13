@@ -343,8 +343,8 @@ begin
     Result:= TryStrToInt(Copy(Text, Pos, 4), Year)
       and TryStrToInt(Copy(Text, Pos+ 5, 2), Month)
       and TryStrToInt(Copy(Text, Pos+ 8, 2), Day)
-      and (Year in [0..9999])
-      and (Month in [1..12])
+      and (Year>= 0) and (Year<= 9999)
+      and (Month>= 1) and (Month<= 12)
       and (Day>= 1)
       and (((Month<= 6) and (Day<= 31)) or ((Month> 6) and (Day<= 30)));
   end;
