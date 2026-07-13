@@ -1,0 +1,4 @@
+if A = B then
+while C = D do
+for i:= Low to High do
+E:= F + G

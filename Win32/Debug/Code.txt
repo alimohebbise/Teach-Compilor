@@ -1,0 +1,42 @@
+while (S> B) and (S<= 2* B- 5) do
+  S:= S + B
+
+while S<= 10 do
+  if B= 1 then S:= S+ 1
+  else S:= S+ 2
+
+for i:= 3* A+ 1 to 2* N- 5 do
+  S:= S+ 1
+
+for i:= A+ 1 to N- 1 do
+  for j:= B+ i to N- i do
+    S:= S+ 1
+
+
+if 2 * A <= B then
+  S:= X + Y / 2
+
+if A or (B = 2) then
+  S:= X + 1
+else
+  S:= Y + 1
+
+if A = 1 then
+  if B = 1 then S:= X
+  else S:= Y
+else S:= Z
+
+if A = 1 then S:= X
+else if A = 2 then S:= Y
+else if A = 3 then S:= Z
+else S:= T
+
+if A= 1 then if B= 1 then S:= X
+else S:= Y
+/*
+A * (B - (3 - D)) / (B + 2 * - 5) + C
+A * (- 5 + C) / ((D + - 7) * - (F - 12))
+
+A or not (B or not C) and D
+B and (C / - A * 2 + A = 14) and not D
+*/

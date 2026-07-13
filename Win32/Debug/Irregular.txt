@@ -1,0 +1,2 @@
+fori:= 1 to100 do
+FOR J:= -15 TO 25 DO

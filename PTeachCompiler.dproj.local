@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2026/05/06 20:32:04.000.928,=E:\دروس 4042\آزمایشگاه اصول طراحی کامپایلر\Unit1.pas</Transaction>
+    <Transaction>2026/05/13 17:03:54.000.125,=E:\دروس 4042\آزمایشگاه اصول طراحی کامپایلر\Unit1.pas</Transaction>
+    <Transaction>2026/05/13 17:04:24.000.753,=E:\دروس 4042\آزمایشگاه اصول طراحی کامپایلر\Unit2.pas</Transaction>
+    <Transaction>2026/05/13 17:06:57.000.504,E:\Teach Compilor\UClassic.dfm=E:\دروس 4042\آزمایشگاه اصول طراحی کامپایلر\Unit1.dfm</Transaction>
+    <Transaction>2026/05/13 17:06:57.000.504,E:\Teach Compilor\UClassic.pas=E:\دروس 4042\آزمایشگاه اصول طراحی کامپایلر\Unit1.pas</Transaction>
+    <Transaction>2026/05/13 17:07:59.000.700,E:\Teach Compilor\USyntaxLine.pas=E:\دروس 4042\آزمایشگاه اصول طراحی کامپایلر\Unit2.pas</Transaction>
+    <Transaction>2026/05/13 17:09:15.000.708,E:\Teach Compilor\PTeachCompiler.dproj=E:\دروس 4042\آزمایشگاه اصول طراحی کامپایلر\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

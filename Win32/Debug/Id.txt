@@ -1,0 +1,3 @@
+Max123
+A1B2C3
+/*123*/Max      // Invalid

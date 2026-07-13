@@ -1,0 +1,15 @@
+program PTeachCompiler;
+
+uses
+  Vcl.Forms,
+  UClassic in 'UClassic.pas' {Form1},
+  USyntaxLine in 'USyntaxLine.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

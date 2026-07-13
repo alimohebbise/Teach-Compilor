@@ -1,0 +1,217 @@
+object FClassic: TFClassic
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = 'Classic Syntaxes'
+  ClientHeight = 761
+  ClientWidth = 1184
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poScreenCenter
+  OnActivate = FormActivate
+  TextHeight = 21
+  object PanelTop: TPanel
+    Left = 0
+    Top = 0
+    Width = 1184
+    Height = 40
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 1182
+    object BtnSave: TButton
+      Left = 1
+      Top = 1
+      Width = 110
+      Height = 38
+      Align = alLeft
+      Caption = 'Save'
+      TabOrder = 0
+      OnClick = BtnSaveClick
+    end
+    object BtnRun: TButton
+      Left = 256
+      Top = 1
+      Width = 110
+      Height = 38
+      Align = alLeft
+      Caption = 'Run'
+      TabOrder = 1
+      OnClick = BtnRunClick
+    end
+    object ComboInp: TComboBox
+      Left = 111
+      Top = 1
+      Width = 145
+      Height = 29
+      Align = alLeft
+      Style = csDropDownList
+      DropDownCount = 0
+      TabOrder = 2
+      OnChange = ComboInpChange
+    end
+  end
+  object PanelLeft: TPanel
+    Left = 0
+    Top = 40
+    Width = 110
+    Height = 721
+    Align = alLeft
+    TabOrder = 1
+    ExplicitHeight = 713
+    object BtnCode: TButton
+      Left = 1
+      Top = 361
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Code'
+      TabOrder = 0
+      OnClick = BtnCodeClick
+    end
+    object BtnTranslator: TButton
+      Left = 1
+      Top = 321
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Translator'
+      TabOrder = 1
+      OnClick = BtnTranslatorClick
+    end
+    object BtnParser: TButton
+      Left = 1
+      Top = 281
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Parser'
+      TabOrder = 2
+      OnClick = BtnParserClick
+    end
+    object BtnDecision: TButton
+      Left = 1
+      Top = 241
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Decision'
+      TabOrder = 3
+      OnClick = BtnDecisionClick
+    end
+    object BtnIrregular: TButton
+      Left = 1
+      Top = 201
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Irregular'
+      TabOrder = 4
+      OnClick = BtnIrregularClick
+    end
+    object BtnStr: TButton
+      Left = 1
+      Top = 161
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Str'
+      TabOrder = 5
+      OnClick = BtnStrClick
+    end
+    object BtnNum: TButton
+      Left = 1
+      Top = 121
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Num'
+      TabOrder = 6
+      OnClick = BtnNumClick
+    end
+    object BtnInt: TButton
+      Left = 1
+      Top = 81
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Int'
+      TabOrder = 7
+      OnClick = BtnIntClick
+    end
+    object BtnId: TButton
+      Left = 1
+      Top = 41
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Id'
+      TabOrder = 8
+      OnClick = BtnIdClick
+    end
+    object BtnUnread: TButton
+      Left = 1
+      Top = 1
+      Width = 108
+      Height = 40
+      Align = alTop
+      Caption = 'Unread'
+      TabOrder = 9
+      OnClick = BtnUnreadClick
+    end
+  end
+  object PanelClient: TPanel
+    Left = 110
+    Top = 40
+    Width = 1074
+    Height = 721
+    Align = alClient
+    TabOrder = 2
+    ExplicitWidth = 1072
+    ExplicitHeight = 713
+    object MemoInp: TMemo
+      Left = 1
+      Top = 1
+      Width = 486
+      Height = 719
+      Align = alLeft
+      Color = clSkyBlue
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      Lines.Strings = (
+        'MemoInp')
+      ParentFont = False
+      ScrollBars = ssVertical
+      TabOrder = 0
+      WordWrap = False
+      ExplicitHeight = 711
+    end
+    object MemoOut: TMemo
+      Left = 487
+      Top = 1
+      Width = 586
+      Height = 719
+      Align = alClient
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Courier New'
+      Font.Style = [fsBold]
+      Lines.Strings = (
+        'MemoOut')
+      ParentFont = False
+      ScrollBars = ssVertical
+      TabOrder = 1
+      WordWrap = False
+      ExplicitLeft = 493
+      ExplicitTop = 6
+    end
+  end
+end
